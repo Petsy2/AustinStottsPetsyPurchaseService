@@ -11,12 +11,16 @@ import Options from './comps/options';
 import Buy from './comps/buy';
 import Title from './comps/title';
 
-// Pet-info
-import Search from './search/index';
-import Description from './description/pet_info';
-import Review from './reviews/Review';
+// !! !! !! !! !! !! !! !!
+// uncomment when using other components:
 
-// const baseURL = (document.URL === 'http://localhost:3003/' ? document.URL : 'http://ec2-18-191-41-4.us-east-2.compute.amazonaws.com/');
+// Team Components
+// import Search from './search/index';
+// import Description from './description/pet_info';
+// import Review from './reviews/Review';
+//
+// !! !! !! !! !! !! !! !!
+
 
 // Root component
 class App extends PureComponent {
@@ -58,19 +62,19 @@ class App extends PureComponent {
 
   componentDidMount () { // get current pet data on mount
     console.log('hi :)');
-    this.div.addEventListener("changePetId", this.changePetId);
+    // this.div.addEventListener("changePetId", this.changePetId);
     this.getPet();
     this.getPetReviews()
   }
 
-  changePetId (pet_id) {
+  changePetId (pet_id) { // setstate to a pet_id / call get requests 
     this.setState({pet_id}, () => {
       this.getPet(this.state.pet_id);
       this.getPetReviews();
     });
   }
 
-  getPetReviews() {
+  getPetReviews() { // get pet reviews / gabes get requests
     Axios.get(`http://ec2-18-191-41-4.us-east-2.compute.amazonaws.com/reviews/${this.state.pet_id}`)
     .then(res => {
       this.setState({
@@ -81,12 +85,24 @@ class App extends PureComponent {
 
   render () {
     // Show product info
+
+    // !! !! !! !! !! !! !! !!
+    // coment out to run full petsy app -> img / Search / Description / Reviews
+    // currently showing just purchase comp.
+    //
+    // all purchase components are in a 'comps' directory
+    // other components are stored in 'description' 'reviews' and 'search' directories 
+    //
+    // also... my server doesnt stay up for more than 30 minutes so youll need to fix that before moving on...
+    //
+    // !! !! !! !! !! !! !! !!
+    //
     return (
       <StyleRoot>
-        <div className={'petIdSubscriber'} ref={el => (this.div = el)}>
-          <img src='./petsylogo.png' alt='...' width="260px" style={[styles.logo.base]}></img>
-          <Search pet_id={this.state.pet_id} changePetId={this.changePetId}/>
-            <Description pet_id={this.state.pet_id} /> 
+        {/* <div className={'petIdSubscriber'} ref={el => (this.div = el)}> */}
+          {/* <img src='./petsylogo.png' alt='...' width="260px" style={[styles.logo.base]}></img> */}
+          {/* <Search pet_id={this.state.pet_id} changePetId={this.changePetId}/> */}
+            {/* <Description pet_id={this.state.pet_id} />  */}
             <div style={[styles.purchase.base]}>
               <div hidden={!this.state.buy} style={[styles.div.base,{width:'100%'}]}>
                 <Title pet={this.state.pet}/>
@@ -99,12 +115,12 @@ class App extends PureComponent {
                 <Options pet={this.state.pet} showBuy={this.showBuy}/>
               </div>
             </div>
-          <div className={'review-area'}>
+          {/* <div className={'review-area'}>
             <div className={'big-box'}>
               {this.state.reviews.map(review => <Review review={review} key={Math.random()} />)}
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </StyleRoot>
     )
   }
