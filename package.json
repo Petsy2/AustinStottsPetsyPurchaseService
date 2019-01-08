@@ -1,5 +1,5 @@
 {
-  "name": "comments-proxy",
+  "name": "Petsy",
   "version": "1.0.0",
   "description": "comments client",
   "main": "index.js",
@@ -9,19 +9,19 @@
     "node-server": "node server.js",
     "test": "jest --detectOpenHandles",
     "setup": "pm2 deploy ecosystem.config.js production setup",
-    "production": "pm2 deploy ecosystem.config.js production",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "start": "npm install; webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/austinStotts/Comments-Proxy.git"
+    "url": "git+https://github.com/austinStotts/Petsy.git"
   },
   "author": "austin stotts",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/austinStotts/Comments-Proxy/issues"
   },
-  "homepage": "https://github.com/austinStotts/Comments-Proxy#readme",
+  "homepage": "https://github.com/austinStotts/Petsy#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.5",

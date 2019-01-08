@@ -48,7 +48,6 @@ class App extends Component {
             <SelectionTabs id="Tabs" handleSelect={this.handleSelect} />
           </Col>
         </Row>
-
         <Row>
           <RelatedPetsList
             id="Pets"
